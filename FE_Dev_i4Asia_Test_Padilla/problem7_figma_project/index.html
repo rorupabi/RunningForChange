@@ -186,22 +186,18 @@
     const newsletterBtnHome = document.querySelector('.newsletter-btn-home');
     const closeNewsletterBtnHome = document.querySelector('.close-newsletter-home');
 
+    // btn function
     if (newsletterBtnHome) {
         newsletterBtnHome.addEventListener('click', function() {
             newsletterModalHome.style.display = 'block';
         });
     }
-
+    // for close btn
     if (closeNewsletterBtnHome) {
         closeNewsletterBtnHome.addEventListener('click', function() {
             newsletterModalHome.style.display = 'none';
         });
     }
 
-    window.addEventListener('click', function(event) {
-        if (event.target === newsletterModalHome) {
-            newsletterModalHome.style.display = 'none';
-        }
-    });
 </script>
 </html>
