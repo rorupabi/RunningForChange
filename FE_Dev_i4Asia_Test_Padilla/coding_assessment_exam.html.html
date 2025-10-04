@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Assessment Exam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            :root {
+           --background-color-light: #ffffff;
+           --text-color-light: #000000;
+           --background-color-dark: #1a1a1a;
+           --text-color-dark: #ffffff;
+           --section-bg-light: #ffffff;
+           --section-bg-dark: #2a2a2a;
+           --section-border-light: #e0e0e0;
+           --section-border-dark: #444444;
+            }
+
+            body {
+                font-family: 'Courier New', monospace;
+                background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                min-height: 100vh;
+                padding: 20px;
+                transition: all 0.3s ease;
+            }
+
+            body.dark-mode {
+                background: linear-gradient(135deg, #0f0c29 0%, #000000 50%, #24243e 100%);
+                color: var(--text-color-dark);
+            }
+
+            body.light-mode {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                color: var(--text-color-light);
+            }
+
+            /* Update section boxes */
+            body.dark-mode .section {
+                background-color: var(--section-bg-dark);
+                border-color: var(--section-border-dark);
+                color: var(--text-color-dark);
+            }
+
+            body.light-mode .section {
+                background-color: var(--section-bg-light);
+                border-color: var(--section-border-light);
+                color: var(--text-color-light);
+            }
+
+            /* Update headers */
+            body.dark-mode .section-header {
+                background-color: #333;
+                color: var(--text-color-dark);
+            }
+
+            body.light-mode .section-header {
+                background-color: #f0f0f0;
+                color: var(--text-color-light);
+            }
+
+            /* Update any buttons or inputs */
+            body.dark-mode input,
+            body.dark-mode button,
+            body.dark-mode textarea {
+                background-color: #333;
+                color: var(--text-color-dark);
+                border-color: #555;
+            }
+
+            body.light-mode input,
+            body.light-mode button,
+            body.light-mode textarea {
+                background-color: #fff;
+                color: var(--text-color-light);
+                border-color: #ccc;
+            }
+        .exam-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .exam-header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid #e74c3c;
+        }
+
+        .exam-header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .exam-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .instructions {
+            padding: 30px;
+            background: #ecf0f1;
+            border-bottom: 2px solid #bdc3c7;
+        }
+
+        .instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+
+        .exam-sections {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .section-points {
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .section-description {
+            color: #000000;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .problem-count {
+            color: #95a5a6;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        #Test-1-Submit-Button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            font-family: 'Courier New', monospace;
+        }
+
+        #Test-1-Submit-Button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        #Test-1-Submit-Button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        input[name="Test2UnwrittableText"] {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        input[name="Test2UnwrittableText"]:hover {
+            border-color: #95a5a6;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .input-holder {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+            user-select: none;
+        }
+
+        .input-holder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: rgba(231, 76, 60, 0.05);
+            border-radius: 8px;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+        }
+
+        .input-holder:hover::after {
+            background: rgba(231, 76, 60, 0.1);
+            border-color: #c0392b;
+        }
+
+        #Test-3-Writtable-Text {
+            padding: 12px 20px;
+            font-size: 1em;
+            width: 400px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f4f8 100%);
+            color: #2c3e50;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+            position: relative;
+            z-index: 1;
+            user-select: none;
+        }
+
+        #Test-3-Writtable-Text:focus,
+        #Test-3-Writtable-Text:hover {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            background: #ffffff;
+        }
+
+        #Test-4-Airplane-SVG{
+            width: 70px;
+            height: 70px;
+            margin-top: 16px;
+        }
+
+        .action-buttons {
+            padding: 30px;
+            background: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn-start {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-start:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-practice {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-practice:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            display: none;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            color: #856404;
+        }
+
+        
+
+        @media (max-width: 768px) {
+            .exam-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer" id="timer">⏱ Time: 02:00:00</div>
+
+    <div class="exam-container">
+        <div class="exam-header">
+            <h1>💻 INTERMEDIATE CODING ASSESSMENT</h1>
+            <p>Front-End Developer Position - Technical Evaluation</p>
+            <div class="exam-info">
+                <div class="info-item">
+                    <div class="info-label">DEADLINE</div>
+                    <div class="info-value">October 6 Monday</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">TOTAL POINTS</div>
+                    <div class="info-value">700</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">PASSING SCORE</div>
+                    <div class="info-value">490/700</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">DIFFICULTY</div>
+                    <div class="info-value">Intermediate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>📋 Examination Instructions</h2>
+            <ul>
+                <li><strong>Read carefully:</strong> All problems (1-6) must be answered within their respective problem boxes in this HTML file. Problem 7 has separate instructions - please read them carefully in the Problem 7 section below.</li>
+                <li><strong>Deadline:</strong> This assessment must be submitted by <strong>October 6, 2025 (Monday) before lunch</strong>. Late submissions will not be accepted.</li>
+                <li><strong>No collaboration:</strong> This is an individual assessment. Any form of cheating will result in disqualification</li>
+                <li><strong>Code quality matters:</strong> Your solutions will be evaluated on correctness, efficiency, and code style</li>
+                <li><strong>Testing:</strong> Ensure all functionality works as expected before submission</li>
+                <li><strong>Submission:</strong> Follow the submission instructions provided in Problem 7 for complete details on how to package and submit your work</li>
+            </ul>
+            <div class="warning">
+                ⚠️ <strong>IMPORTANT NOTES:</strong>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Problems 1-6:</strong> Must be completed within this HTML file in their respective sections</li>
+                    <li><strong>Problem 7:</strong> Is a separate project with specific submission requirements (see Problem 7 section)</li>
+                    <li><strong>Deadline:</strong> October 6, 2025 (Monday) - No extensions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exam-sections">
+            <div class="section" id="test1">
+                <div class="section-header">
+                    <span class="section-title">Problem 1: Bye Bye, Boring Popups</span>
+                    <span class="section-points">35 Points</span>
+                </div>
+                <div class="section-description">
+                    When you click the submit button, a pop-up will appear asking if you want to continue. For this test, you are required to create your own custom 'Continue' modal and disable the default alert or pop-up message. 
+                    You should not remove the existing JavaScript code, but instead, add your own JavaScript to override the default behavior and prevent the default pop-up from showing or triggering.
+
+                    <button type="button" id="Test-1-Submit-Button">Submit</button>
+                    <!-- Never delete the script! You can only add a script to prevent this alert pop up and also add your own popup -->
+                    <script>
+                        document.querySelector('#Test-1-Submit-Button').addEventListener('click', () => {
+                             if (confirm('Do you want to proceed to Problem 2?')) {
+                                const test2Element = document.querySelector('#test2');
+                                if (test2Element) {
+                                    test2Element.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }
+                        })
+                    </script>
+                    <!-- You can put your script anywhere you want even outside the problem box -->
+                </div>
+            </div>
+
+            <div class="section" id="test1">
+                <div class="section-header">
+                    <span class="section-title">Code for Problem 1</span>
+                    <span class="section-points">35 Points</span>
+                </div>
+                <div class="section-description">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Voluptate eveniet quaerat nam doloremque ex porro laudantium architecto, 
+                    doloribus eum inventore! Corrupti perferendis maxime similique, 
+                    et at quas voluptatibus hic nihil.
+                    <br><br>
+                    <button type="button" class="problem1-custom-modal">
+                        Submit
+                    </button>
+                </div>
+
+                <script>
+                    document.querySelector('.problem1-custom-modal').addEventListener('click', () => {
+                        // Custom modal logic here
+                        const modal = document.createElement('div');
+                        modal.classList.add('custom-modal');
+                        modal.innerHTML = `
+                            <div class="modal-content">
+                                <span class="close-button">&times;</span>
+                                <p>Do you want to proceed to Problem 2?</p>
+                                <button id="confirm-button">Continue</button>
+                            </div>
+                        `;
+                        document.body.appendChild(modal);
+
+                        // Close modal
+                        modal.querySelector('.close-button').addEventListener('click', () => {
+                            modal.remove();
+                        });
+
+                        // Confirm button logic
+                        modal.querySelector('#confirm-button').addEventListener('click', () => {
+                            modal.remove();
+                            const test2Element = document.querySelector('#test2');
+                            if (test2Element) {
+                                test2Element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        });
+                    });
+                </script>
+                    <style>
+
+                        .problem1-custom-modal {
+                            padding: 12px 30px;
+                            font-size: 1em;
+                            font-weight: bold;
+                            background: linear-gradient(135deg, #2702fd 0%, #fad0c4 100%);
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+                            font-family: 'Courier New', monospace;
+                        }
+                        .custom-modal {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 1000;
+                        }
+                        .modal-content {
+                            background: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            text-align: center;
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        }
+                        .close-button {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            font-size: 1.5em;
+                            cursor: pointer;
+                        }
+                        #confirm-button {
+                            margin-top: 15px;
+                            padding: 10px 20px;
+                            font-size: 1em;
+                            background: #3498db;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                        }
+                        #confirm-button:hover {
+                            background: #2980b9;
+                        }
+                    </style>
+                </script>
+            </div>
+
+            <div class="section" id="test2">
+                <div class="section-header">
+                    <span class="section-title">Problem 2: The Untouchable Input – CSS Only Magic!</span>
+                    <span class="section-points">17.5 Points</span>
+                </div>
+                <div class="section-description">
+                    Make this input field unclickable and unwritable using only CSS, without using JavaScript or modifying the input field's code (e.g., adding the disabled attribute). The input field should remain visible, and the text color must contrast with the background to ensure that the text is readable, but the field is still unwritable. <br>
+
+                    <input type="text" name="Test2UnwrittableText" id="" placeholder="Make me unwritable">
+                    <!-- style here <style></style> -->
+                    <style>
+                        input[name="Test2UnwrittableText"] {
+                            pointer-events: none;
+                            cursor: not-allowed;
+                        }
+                    </style>
+                </div>
+                
+            </div>
+
+            <div class="section" id="test3">
+                <div class="section-header">
+                    <span class="section-title">Problem 3: A CSS Problem</span>
+                    <span class="section-points">17.5 Points</span>
+                </div>
+                <div class="section-description">
+                    Make the text input field clickable using CSS. You can only add your own CSS and not removing the existing one. <br>
+
+                    <div class="input-holder">
+                        <input type="text" name="Test" id="Test-3-Writtable-Text" placeholder="Make me writable">
+                    </div>
+                </div>
+                <style>
+                    .input-holder::after {
+                        display: none;
+                    }
+                </style>
+                <!-- Your style here <style></style> -->
+                <!-- You can put your script anywhere you want even outside the problem box -->
+            </div>
+
+            <div class="section" id="test4">
+                <div class="section-header">
+                    <span class="section-title">Problem 4: Scroll & Soar</span>
+                    <span class="section-points">70 Points — earn +35 bonus if the skies are smooth!</span>
+                </div>
+                <div class="section-description">
+                    Make the plane fly! Animate the SVG so it glides to the right as the user scrolls—bonus points for smooth skies.<br>
+
+                    <svg id="Test-4-Airplane-SVG" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M200.5 484.7H77.4l-0.9-168h43.8z" fill="#FFEB4D"/><path d="M897 652.7H245.5c-92.8 0-168-75.2-168-168h725.6c93.4 0 146.4 51.7 146.4 115.4 0 29-23.5 52.6-52.5 52.6z" fill="#DAE5FF"/><path d="M124.4 600.7c30.6 31.8 73.5 51.6 121.2 51.6H897c28.7 0 52-23 52.5-51.6H124.4z" fill="#FFACC2"/><path d="M776.5 513.7h32v42h-32z" fill="#FFFFFF"/><path d="M808.5 562.7h-32c-4.4 0-8-3.1-8-7v-42c0-3.9 3.6-7 8-7h32c4.4 0 8 3.1 8 7v42c0 3.8-3.5 7-8 7z m-24-14h16v-28h-16v28z" fill="#9A2D2F"/><path d="M214.5 555.7h-20c-3.3 0-6-2.7-6-6v-30c0-3.3 2.7-6 6-6h20c3.3 0 6 2.7 6 6v30c0 3.3-2.6 6-6 6z" fill="#FFFFFF"/><path d="M214.5 562.7h-20c-7.7 0-14-5.5-14-12.2V519c0-6.8 6.3-12.2 14-12.2h20c7.7 0 14 5.5 14 12.2v31.5c0 6.7-6.2 12.2-14 12.2z m-18-14h16v-28h-16v28zM731.5 521.7h-4c-3.3 0-6 2.7-6 6v8c0 3.3 2.7 6 6 6h4c3.3 0 6-2.7 6-6v-8c0-3.3-2.6-6-6-6zM700.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM669.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM638.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM607.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM577.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM546.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM515.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM298.5 521.7h-4c-3.3 0-6 2.2-6 5v10c0 2.8 2.7 5 6 5h4c3.3 0 6-2.2 6-5v-10c0-2.8-2.6-5-6-5zM267.5 521.7h-4c-3.3 0-6 2.7-6 6v8c0 3.3 2.7 6 6 6h4c3.3 0 6-2.7 6-6v-8c0-3.3-2.6-6-6-6z" fill="#9A2D2F"/><path d="M950.5 821.7c-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2s-7.5 3-12.7 10.2c-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2s-7.5 3-12.7 10.2c-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2-4.4 0-8-3.6-8-8s3.6-8 8-8c13.8 0 20.7 9.8 25.7 17 5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 4.4 0 8 3.6 8 8s-3.5 8-8 8zM950.5 771.7c-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2s-7.5 3-12.7 10.2c-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2s-7.5 3-12.7 10.2c-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2-4.4 0-8-3.6-8-8s3.6-8 8-8c13.8 0 20.7 9.8 25.7 17 5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 4.4 0 8 3.6 8 8s-3.5 8-8 8zM241.6 259.6c-12.9 0-19.2-10.1-23.8-17.4-4.3-6.9-6.5-9.9-10.2-9.9s-5.9 3-10.2 9.9c-4.6 7.3-10.9 17.4-23.8 17.4s-19.2-10.1-23.8-17.4c-4.3-6.9-6.5-9.9-10.2-9.9s-5.9 3-10.2 9.9c-4.6 7.3-10.9 17.4-23.8 17.4s-19.2-10.1-23.8-17.4c-4.3-6.9-6.5-9.9-10.2-9.9-4.4 0-8-3.6-8-8s3.6-8 8-8c12.9 0 19.2 10.1 23.8 17.4 4.3 6.9 6.5 9.9 10.2 9.9s5.9-3 10.2-9.9c4.6-7.3 10.9-17.4 23.8-17.4s19.2 10.1 23.8 17.4c4.3 6.9 6.5 9.9 10.2 9.9 3.7 0 5.9-3 10.2-9.9 4.6-7.3 10.9-17.4 23.8-17.4s19.2 10.1 23.8 17.4c4.3 6.9 6.5 9.9 10.2 9.9 4.4 0 8 3.6 8 8s-3.6 8-8 8zM263.5 209.6c-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2-5 0-7.5 3-12.7 10.2-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2s-7.5 3-12.7 10.2c-5.1 7.2-12 17-25.7 17-13.8 0-20.7-9.8-25.7-17-5.1-7.3-7.7-10.2-12.7-10.2-4.4 0-8-3.6-8-8s3.6-8 8-8c13.8 0 20.7 9.8 25.7 17 5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 5 0 7.5-3 12.7-10.2 5.1-7.2 12-17 25.7-17s20.7 9.8 25.7 17c5.1 7.3 7.7 10.2 12.7 10.2 4.4 0 8 3.6 8 8s-3.5 8-8 8z" fill="#9A2D2F"/><path d="M350.1 82m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z" fill="#FFEB4D"/><path d="M350.1 122c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z m0-64c-13.2 0-24 10.8-24 24s10.8 24 24 24 24-10.8 24-24-10.7-24-24-24zM926.5 957.7h-824c-4.4 0-8-3.6-8-8s3.6-8 8-8h824c4.4 0 8 3.6 8 8s-3.5 8-8 8z" fill="#9A2D2F"/><path d="M233 492.7c4 9.7 20 21.4 47.5 19.2 65.5-5.2 131.9-13.6 204-9.2 136.5 8.2 231.1 1.5 272.6-2 15.8-1.3 48.4-3.5 62.9-7.4-5.5-0.4-11.1-0.6-16.9-0.6H233z" fill="#FFFFFF"/><path d="M656.3 652.2H456.4l-194.1-203h56.3z" fill="#FFACC2"/><path d="M701.3 684.7h-70c-8.8 0-16-7.2-16-16v-28c0-8.8 7.2-16 16-16h70c8.8 0 16 7.2 16 16v28c0 8.8-7.2 16-16 16z" fill="#CAE8FF"/><path d="M916.5 512.4c-27.9-23.3-67.1-35.7-113.4-35.7H379.9l-57.1-34.4c-1.2-0.7-2.7-1.1-4.1-1.1h-56.3c-3.2 0-6.1 1.9-7.4 4.9-1.3 2.9-0.6 6.4 1.6 8.7l21 22h-72.2l-78-163.8c-1.4-2.6-4.1-4.2-7-4.2H76.5c-2.1 0-4.2 0.8-5.7 2.4-1.5 1.5-2.3 3.6-2.3 5.7l0.9 168c0 0.4 0 0.8 0.1 1.2 0.7 96.5 79.4 174.8 176 174.8h361.8v8c0 13.2 10.8 24 24 24h70c13.2 0 24-10.8 24-24v-8H897c33.4 0 60.6-27.2 60.6-60.6-0.1-34.6-14.6-65.8-41.1-87.9z m-113.4-19.7c42.5 0 78.2 11 103.1 31.9 20.9 17.5 33.1 41.4 35 68.1H572.8l-85.7-51.5c2-0.8 3.4-2.5 3.4-4.5v-10c0-2.8-2.7-5-6-5h-4c-3.3 0-6 2.2-6 5v6.9l-68-40.9h396.6z m-718.5-168h31l71.6 152H85.4l-0.8-152z m1.1 168H292.8l28.9 30.2c-1.3 0.9-2.1 2.3-2.1 3.8v10c0 2.8 2.7 5 6 5h4c3.1 0 5.6-1.9 5.9-4.4l53 55.4H127.6c-24.4-26.7-40-61.6-41.9-100z m222.6 151.6h-62.8c-37.2 0-72.3-12.5-100.7-35.6h258.8l34.2 35.7-129.5-0.1z m299-3.6v3.5H459.8L281 457.2h35.4l292.2 175.7c-0.8 2.4-1.3 5-1.3 7.8z m102 28c0 4.4-3.6 8-8 8h-70c-4.4 0-8-3.6-8-8v-28c0-4.4 3.6-8 8-8h70c4.4 0 8 3.6 8 8v28zM897 644.3l-171.7 0.4v-4c0-13.2-10.8-24-24-24h-70c-4.6 0-8.9 1.3-12.6 3.6l-19.3-11.6h341.1c-4.1 20.2-22.2 35.6-43.5 35.6z" fill="#9A2D2F"/></svg>
+                </div>
+                <style>
+                    #Test-4-Airplane-SVG {
+                        position: relative;
+                        left: 0;
+                        top: 60%;
+                        transform: translateY(-50%);
+                        transition: left 0.05s ease-out;
+                    }
+                    
+                    #test4 {
+                        position: relative;
+                        overflow: hidden;
+                    }
+                </style>
+                <!-- Your style here <style></style> -->
+                 <script>
+                     window.addEventListener('scroll', () => {
+                    const airplane = document.getElementById('Test-4-Airplane-SVG');
+                    const container = document.getElementById('test4');
+                    
+                    if (!airplane || !container) return;
+                    
+                    // Get container position relative to viewport
+                    const containerRect = container.getBoundingClientRect();
+                    const containerTop = containerRect.top;
+                    const containerHeight = containerRect.height;
+                    
+                    // Only animate when container is in view
+                    if (containerTop < window.innerHeight && containerTop + containerHeight > 0) {
+                        // Calculate progress based on container position
+                        const scrollProgress = Math.max(0, Math.min(1, 
+                            (window.innerHeight - containerTop) / (window.innerHeight + containerHeight)
+                        ));
+                        
+                        const viewportWidth = window.innerWidth;
+                        const planeWidth = 800;
+                        const maxLeft = viewportWidth - planeWidth;
+                        
+                        airplane.style.left = (scrollProgress * maxLeft * 2) + 'px';
+                    }
+                });
+                 </script>
+                <!-- You can put your script anywhere you want even outside the problem box -->
+            </div>
+
+            <div class="section" id="test5">
+                <div class="section-header">
+                    <span class="section-title">Problem 5: Master the Light & Dark Side</span>
+                    <span class="section-points">70 Points</span>
+                </div>
+                <div class="section-description">
+                    Create a well-designed toggle switch that allows users to switch between Light Mode and Dark Mode. When clicked, the entire page UI should update accordingly. <br><br>
+
+                    <button id="Test-5-Light-Button">Light</button>
+                    <button id="Test-5-Dark-Button">Dark</button>
+                </div>
+                <style>
+                    #Test-5-Light-Button,
+                    #Test-5-Dark-Button  {
+                      padding:  12px 24px;
+                      border: 2px solid #333;
+                      border-radius: 10px;
+                      font-size: 16px;
+                      font-weight: bold;
+                      cursor: pointer;
+                      transition: all 0.3s ease;
+                      margin: 5px;
+                    }
+
+                    #Test-5-Light-Button:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 4px 15px rgba(231, 4, 12, 0.4);
+                        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+                        color: black;
+                    }
+
+                    #Test-5-Dark-Button:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 4px 15px rgba(231, 4, 12, 0.4);
+                        background: linear-gradient(135deg, #4259cf 0%, #fc5c7d 100%);
+                        color: white;
+                    }
+
+                    #Test-5-Light-Button:active,
+                    #Test-5-Dark-Button:active {
+                        transform: scale(0.95);
+                    }
+
+                </style>
+                <!-- Your style here <style></style> -->
+
+                <script>
+                    const lightButton = document.getElementById('Test-5-Light-Button');
+                    const darkButton = document.getElementById('Test-5-Dark-Button');
+
+                    lightButton.addEventListener('click', () => {
+                        document.body.classList.remove('dark-mode');
+                        document.body.classList.add('light-mode');
+                    });
+
+                    darkButton.addEventListener('click', () => {
+                        document.body.classList.remove('light-mode');
+                        document.body.classList.add('dark-mode');
+                    });
+
+                    document.body.classList.add('light-mode');
+                </script>
+                <!-- You can put your script anywhere you want even outside the problem box -->
+            </div>
+
+            <div class="section" id="test6">
+                <div class="section-header">
+                    <span class="section-title">Problem 6: Dynamic To-Do List with Persistence and Filtering</span>
+                    <span class="section-points">210 Points</span>
+                </div>
+
+                <div class="section-description">
+                    <strong>Objective:</strong> Implement a fully functional to-do list application using JavaScript within this section. You must use the existing HTML elements provided below and add your own JavaScript code to make them interactive.<br><br>
+
+                    <strong>Requirements:</strong><br>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Task Creation:</strong> Users can add new tasks using the input field</li>
+                        <li><strong>Task Editing:</strong> Click on a task to edit its text inline</li>
+                        <li><strong>Task Deletion:</strong> Provide a delete button for each task</li>
+                        <li><strong>Completion Toggle:</strong> Allow users to mark tasks as complete/incomplete</li>
+                        <li><strong>Filtering:</strong> Implement filters using the test buttons below (Show All, Completed, Incomplete)</li>
+                        <li><strong>Data Persistence:</strong> Use localStorage to save and load tasks on page refresh</li>
+                        <li><strong>Validation:</strong> Prevent adding empty tasks and show appropriate feedback</li>
+                    </ul>
+                    <br>
+
+                    <div class="warning">
+                        ⚠️ <strong>Important Instructions:</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Do NOT create a separate HTML file or project</li>
+                            <li>Write your JavaScript within <code>&lt;script&gt;</code> tags in this section or in a separate script file</li>
+                            <li>You MUST connect the existing test buttons below to your functionality</li>
+                            <li>The "Add Task" button (#Test-6-Add-Button) must trigger task creation</li>
+                            <li>The filter buttons must control what tasks are displayed</li>
+                            <li>You may add CSS styling within <code>&lt;style&gt;</code> tags for this section only</li>
+                        </ul>
+                    </div>
+                    <br>
+
+                    <!-- Test Buttons (required for grading) -->
+                    <button id="Test-6-Add-Button">Add Task</button>
+                    <button id="Test-6-Filter-All">Show All</button>
+                    <button id="Test-6-Filter-Completed">Show Completed</button>
+                    <button id="Test-6-Filter-Incomplete">Show Incomplete</button>
+
+                    <br><br>
+
+                    <!-- ✅ To-Do App Structure (Use these existing elements) -->
+                    <div id="todo-app">
+                        <!-- Input Section -->
+                        <div class="todo-input">
+                            <input type="text" id="todo-input-field" placeholder="Enter a new task..." />
+                            <button id="add-task-btn">Add</button>
+                        </div>
+
+                        <!-- Task List Section -->
+                        <ul id="todo-list"></ul>
+
+                        <!-- Feedback message -->
+                        <div id="todo-feedback" style="display:none; color: red; margin-top: 10px;"></div>
+                    </div>
+
+                    <br>
+                    <strong>Point Distribution:</strong><br>
+                    • Task CRUD operations (60 points)<br>
+                    • Filtering functionality (50 points)<br>
+                    • localStorage persistence (50 points)<br>
+                    • UI/UX and validation (30 points)<br>
+                    • Code quality and organization (20 points)
+
+                    <!-- Your style here <style></style> -->
+                     <style>
+                        #todo-app {
+                            background: rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(10px);
+                            padding: 20px;
+                            border-radius: 12px;
+                            margin-top: 20px;
+                        }
+
+                        .todo-input {
+                            display: flex;
+                            gap: 10px;
+                            margin-bottom: 20px;
+                        }
+
+                        #todo-input-field {
+                            flex: 1;
+                            padding: 12px;
+                            border: 2px solid #ddd;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, monospace;
+                        }
+
+                        #todo-input-field:focus {
+                            outline: none;
+                            border-color: #2674a8;
+                            box-shadow: 0 0 8px rgba(71, 156, 226, 0.3);
+                        }
+
+                        #add-task-btn {
+                            padding: 12px 24px;
+                            border: none;
+                            background: #2674a8;
+                            color: white;
+                            font-size: 16px;
+                            font-weight: bolder;
+                            border-radius: 8px;
+                            border: none;
+                            cursor: pointer;
+                            transition: background 0.3s ease;
+                        }
+
+                        #add-task-btn:hover {
+                            background: #1b5f7a;
+                            transition: background 0.3s ease;
+                        }
+
+                        #todo-list {
+                            list-style: none;
+                            padding: 0px;
+                            margin: 0px;
+                        }
+
+                        .todo-item {
+                            background: white;
+                            padding: 12px;
+                            border-bottom: 1px solid #eee;
+                        }
+
+                        .todo-item.completed {
+                            text-decoration: line-through;
+                            color: gray;
+                            opacity: 0.7;
+                        }
+
+                        .todo-item:hover {
+                            transform: translateX(5px);
+                            transition: transform 0.2s ease;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        }
+
+                        .todo-item input[type="checkbox"] {
+                            width: 20px;
+                            height: 20px;
+                            transform: scale(1.2);
+                            cursor: pointer;
+                        }
+
+                        .todo-text {
+                            flex: 1;
+                            font-size: 16px;
+                            color: #333;
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, monospace;
+                            cursor: pointer;
+                            padding: 5px;
+                            border-radius: 4px;
+                        }
+
+                        .todo-text:hover {
+                            background: #f0f0f0;
+                        }
+
+                        .todo-text[contenteditable="true"] {
+                            background: #fff9c4;
+                            outline: 2px solid #ffd54f;
+                        }
+
+                        .delete-btn {
+                            background: #ff4757;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            transition: all 0.2s;
+                        }
+
+                        .delete-btn:hover {
+                            background: #ff3838;
+                            transform: scale(1.1);
+                        }
+
+                        #Test-6-Add-Button,
+                        #Test-6-Filter-All,
+                        #Test-6-Filter-Completed,
+                        #Test-6-Filter-Incomplete {
+                            padding: 10px 20px;
+                            margin: 5px;
+                            border: 2px solid #333;
+                            border-radius: 8px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        }
+
+                        #Test-6-Add-Button {
+                            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+                            color: white;
+                        }
+
+                        #Test-6-Filter-All {
+                            background: #3498db;
+                            color: white;
+                        }
+
+                        #Test-6-Filter-Completed {
+                            background: #2ecc71;
+                            color: white;
+                        }
+
+                        #Test-6-Filter-Incomplete {
+                            background: #e74c3c;
+                            color: white;
+                        }
+
+                        #Test-6-Add-Button:hover,
+                        #Test-6-Filter-All:hover,
+                        #Test-6-Filter-Completed:hover,
+                        #Test-6-Filter-Incomplete:hover {
+                            transform: scale(1.05);
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                        }
+
+                        #todo-feedback {
+                            padding: 10px;
+                            border-radius: 6px;
+                            background: #ffebee;
+                            color: #c62828;
+                            font-weight: bold;
+                        }
+
+                     </style>
+                    <!-- You can put your script anywhere you want even outside the problem box -->
+                                <style>
+                #todo-app {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-top: 20px;
+                }
+
+                .todo-input {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+
+                #todo-input-field {
+                    flex: 1;
+                    padding: 12px;
+                    border: 2px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-family: 'Courier New', monospace;
+                }
+
+                #add-task-btn {
+                    padding: 12px 24px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                }
+
+                #add-task-btn:hover {
+                    transform: scale(1.05);
+                }
+
+                #todo-list {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .todo-item {
+                    background: white;
+                    padding: 15px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    transition: all 0.3s ease;
+                }
+
+                .todo-item:hover {
+                    transform: translateX(5px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                }
+
+                .todo-item.completed {
+                    opacity: 0.6;
+                    text-decoration: line-through;
+                }
+
+                .todo-item input[type="checkbox"] {
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                }
+
+                .todo-text {
+                    flex: 1;
+                    font-size: 16px;
+                    color: #333;
+                    cursor: pointer;
+                    padding: 5px;
+                    border-radius: 4px;
+                }
+
+                .todo-text:hover {
+                    background: #f0f0f0;
+                }
+
+                .todo-text[contenteditable="true"] {
+                    background: #fff9c4;
+                    outline: 2px solid #ffd54f;
+                }
+
+                .delete-btn {
+                    background: #ff4757;
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    transition: all 0.2s;
+                    text-decoration: none;
+                    outline: none;
+                }
+
+                .delete-btn:hover {
+                    background: #ff3838;
+                    transform: scale(1.1);
+                }
+
+                .delete-btn:active {
+                    transform: scale(0.95);
+                }
+
+                #Test-6-Add-Button,
+                #Test-6-Filter-All,
+                #Test-6-Filter-Completed,
+                #Test-6-Filter-Incomplete {
+                    padding: 10px 20px;
+                    margin: 5px;
+                    border: 2px solid #333;
+                    border-radius: 8px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                #Test-6-Add-Button {
+                    background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+                    color: white;
+                }
+
+                #Test-6-Filter-All {
+                    background: #3498db;
+                    color: white;
+                }
+
+                #Test-6-Filter-Completed {
+                    background: #2ecc71;
+                    color: white;
+                }
+
+                #Test-6-Filter-Incomplete {
+                    background: #e74c3c;
+                    color: white;
+                }
+
+                #Test-6-Add-Button:hover,
+                #Test-6-Filter-All:hover,
+                #Test-6-Filter-Completed:hover,
+                #Test-6-Filter-Incomplete:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                }
+
+                #todo-feedback {
+                    padding: 10px;
+                    border-radius: 6px;
+                    background: #ffebee;
+                    color: #c62828;
+                    font-weight: bold;
+                }
+            </style>
+
+            <script>
+            let tasks = [];
+            let currentFilter = 'all';
+
+            // Load tasks from localStorage
+            function loadTasks() {
+                const saved = localStorage.getItem('todoTasks');
+                if (saved) {
+                    tasks = JSON.parse(saved);
+                }
+                renderTasks();
+            }
+
+            // Save tasks to localStorage
+            function saveTasks() {
+                localStorage.setItem('todoTasks', JSON.stringify(tasks));
+            }
+
+            // Add new task
+            function addTask() {
+                const input = document.getElementById('todo-input-field');
+                const feedback = document.getElementById('todo-feedback');
+                const text = input.value.trim();
+
+                if (text === '') {
+                    feedback.textContent = '⚠️ Please enter a task!';
+                    feedback.style.display = 'block';
+                    setTimeout(() => {
+                        feedback.style.display = 'none';
+                    }, 3000);
+                    return;
+                }
+
+                const task = {
+                    id: Date.now(),
+                    text: text,
+                    completed: false
+                };
+
+                tasks.push(task);
+                saveTasks();
+                renderTasks();
+                input.value = '';
+                feedback.style.display = 'none';
+            }
+
+            // Delete task
+            function deleteTask(id) {
+                tasks = tasks.filter(task => task.id !== id);
+                saveTasks();
+                renderTasks();
+            }
+
+            // Toggle task completion
+            function toggleTask(id) {
+                const task = tasks.find(t => t.id === id);
+                if (task) {
+                    task.completed = !task.completed;
+                    saveTasks();
+                    renderTasks();
+                }
+            }
+
+            // Edit task
+            function editTask(id, newText) {
+                const task = tasks.find(t => t.id === id);
+                if (task && newText.trim() !== '') {
+                    task.text = newText.trim();
+                    saveTasks();
+                    renderTasks();
+                }
+            }
+
+            // Show empty state message
+            function showEmptyState(message) {
+                const list = document.getElementById('todo-list');
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-state';
+                emptyDiv.textContent = message;
+                list.appendChild(emptyDiv);
+            }
+
+            // Render tasks based on filter
+            function renderTasks() {
+                const list = document.getElementById('todo-list');
+                list.innerHTML = '';
+
+                let filteredTasks = tasks;
+                let emptyMessage = '';
+
+                if (currentFilter === 'completed') {
+                    filteredTasks = tasks.filter(t => t.completed);
+                    emptyMessage = 'No completed tasks yet!';
+                } else if (currentFilter === 'incomplete') {
+                    filteredTasks = tasks.filter(t => !t.completed);
+                    emptyMessage = 'No incomplete tasks!';
+                } else {
+                    emptyMessage = 'No tasks yet! Add one to get started.';
+                }
+
+                // Show empty state if no tasks match filter
+                if (filteredTasks.length === 0) {
+                    showEmptyState(emptyMessage);
+                    return;
+                }
+
+            filteredTasks.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${task.completed ? 'completed' : ''}`;
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = task.completed;
+                checkbox.addEventListener('change', () => toggleTask(task.id));
+
+                const textSpan = document.createElement('span');
+                textSpan.className = 'todo-text';
+                textSpan.textContent = task.text;
+                textSpan.addEventListener('click', function() {
+                    this.contentEditable = true;
+                    this.focus();
+                });
+                textSpan.addEventListener('blur', function() {
+                    this.contentEditable = false;
+                    editTask(task.id, this.textContent);
+                });
+                textSpan.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.blur();
+                    }
+                });
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.addEventListener('click', () => deleteTask(task.id));
+
+                li.appendChild(checkbox);
+                li.appendChild(textSpan);
+                li.appendChild(deleteBtn);
+                list.appendChild(li);
+                    });
+                }
+
+                    // Event listeners
+                    document.getElementById('add-task-btn').addEventListener('click', addTask);
+                    document.getElementById('Test-6-Add-Button').addEventListener('click', addTask);
+
+                    document.getElementById('todo-input-field').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            addTask();
+                        }
+                    });
+
+                    document.getElementById('Test-6-Filter-All').addEventListener('click', () => {
+                        currentFilter = 'all';
+                        renderTasks();
+                    });
+
+                    document.getElementById('Test-6-Filter-Completed').addEventListener('click', () => {
+                        currentFilter = 'completed';
+                        renderTasks();
+                    });
+
+                    document.getElementById('Test-6-Filter-Incomplete').addEventListener('click', () => {
+                        currentFilter = 'incomplete';
+                        renderTasks();
+                    });
+
+                    // Initialize
+                    loadTasks();
+            </script>
+                </div>
+            </div>
+
+            <div class="section" id="test7">
+                <div class="section-header">
+                    <span class="section-title">Problem 7: Figma to HTML Conversion Challenge</span>
+                    <span class="section-points">280 Points + 70 Bonus</span>
+                </div>
+                <div class="section-description">
+                    <strong>Objective:</strong> Convert the provided Figma design into a fully functional, interactive, and responsive webpage using HTML, CSS, and JavaScript.<br><br>
+                    
+                    <strong>Design Resources:</strong><br>
+                    • Figma Design File: <a href="https://www.figma.com/site/Ingk89XxwN8BondnBDxipe/Group-Event--Community-?node-id=0-1&p=f&t=Y2VWGHtWr7PLanf0-0" target="_blank">View Design Specs</a><br>
+                    • Reference Preview: <a href="https://halo-letter-thing.figma.site" target="_blank">Live Preview</a><br><br>
+                    
+                    <strong>Requirements:</strong><br>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Accurately replicate the design layout, typography, colors, and spacing</li>
+                        <li>Implement all interactive elements (buttons, hover states, animations, etc.)</li>
+                        <li>Ensure full responsiveness across desktop, tablet, and mobile devices</li>
+                        <li>Replace all static images with relevant videos that match the design context</li>
+                        <li>Maintain semantic HTML structure and clean, organized CSS</li>
+                        <li>Optimize for performance and accessibility</li>
+                    </ul>
+                    <br>
+                    
+                    <strong>⚠️ IMPORTANT: Project Structure & Submission Instructions</strong><br><br>
+                    
+                    <div class="warning" style="margin-bottom: 15px;">
+                        <strong>Step 1: Create Your Project</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Create a <strong>separate project folder</strong> for Problem 7 (this can be a standalone website)</li>
+                            <li>You must use embedded or hosted videos (MP4, WebM, or YouTube/Vimeo embeds) instead of static images</li>
+                            <li>Choose videos that are contextually appropriate to the content sections</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning" style="margin-bottom: 15px; background: #e8f5e9; border-color: #4caf50;">
+                        <strong>Step 2: Organize Your Files</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Create a main folder named: <code>FE_Dev_i4Asia_Test_[YourLastName]</code></li>
+                            <li>Example: <code>FE_Dev_i4Asia_Test_Santos</code></li>
+                            <li>Inside this folder, place:
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li><strong>This HTML file</strong> (the exam file with Problems 1-6 completed)</li>
+                                    <li><strong>Your Problem 7 project folder</strong> (with all assets, CSS, JS, videos, etc.)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br>
+                        <strong>Folder Structure Example:</strong>
+                        <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin-top: 8px;">
+            FE_Dev_i4Asia_Test_Santos/
+            ├── coding_assessment_exam.html  ← This exam file
+            └── problem7_figma_project/      ← Your Problem 7 project
+                ├── index.html
+                ├── css/
+                ├── js/
+                ├── videos/
+                └── assets/
+                        </pre>
+                    </div>
+
+                    <div class="warning" style="margin-bottom: 15px; background: #fff3e0; border-color: #ff9800;">
+                        <strong>Step 3: Compress and Upload</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Zip/compress the <code>FE_Dev_i4Asia_Test_[YourLastName]</code> folder</li>
+                            <li>Upload the ZIP file to <strong>Google Drive</strong></li>
+                            <li>Set sharing to <strong>"Anyone with the link"</strong> can view</li>
+                            <li>Copy the shareable link</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning" style="background: #e3f2fd; border-color: #2196f3;">
+                        <strong>Step 4: Submit via Email</strong><br><br>
+                        Send your submission email to <strong>BOTH</strong> recipients:<br><br>
+                        
+                        <strong>📧 To:</strong><br>
+                        • Ms. Christine (HR): <a href="mailto:ccapulong@i4asiacorp.com">ccapulong@i4asiacorp.com</a><br>
+                        • Lead Front-End Developer: <a href="mailto:ccostiniano@i4asiacorp.com">ccostiniano@i4asiacorp.com</a><br><br>
+                        
+                        <strong>Email Subject:</strong> <code>FE Developer Test Submission - [Your Full Name]</code><br><br>
+                        
+                        <strong>Email Body Template:</strong>
+                        <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin-top: 8px;">
+            Dear Ms. Christine and Lead Front-End Developer,
+
+            I am submitting my completed Front-End Developer Assessment for i4 Asia Incoporated 
+            Front-end Exam.
+
+            📦 Google Drive Link: [Your GDrive Link Here]
+            🌐 Live Demo (if hosted): [Your Vercel/Netlify Link - Optional]
+
+            File Name: FE_Dev_i4Asia_Test_[YourLastName].zip
+
+            Thank you for your time and consideration.
+
+            Best regards,
+            [Your Full Name]
+            [Your Contact Number]
+            [Your Email]
+                        </pre>
+                    </div>
+
+                    <div class="warning" style="background: #f3e5f5; border-color: #9c27b0;">
+                        <strong>🎁 BONUS OPPORTUNITY: +70 Points</strong><br><br>
+                        <strong>Host your Problem 7 project on any platform:</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Vercel (vercel.com) - Recommended</li>
+                            <li>Netlify (netlify.com)</li>
+                            <li>GitHub Pages</li>
+                            <li>Any other hosting platform</li>
+                        </ul>
+                        <br>
+                        Include the live URL in your submission email to earn the bonus points!
+                    </div>
+                    <br>
+                    
+                    <strong>Evaluation Criteria:</strong><br>
+                    • Design accuracy (70 points)<br>
+                    • Interactivity & functionality (70 points)<br>
+                    • Responsive design (70 points)<br>
+                    • Code quality & organization (70 points)<br>
+                    • <strong>Bonus: Live hosting (+70 points)</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
