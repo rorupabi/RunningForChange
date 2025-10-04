@@ -44,15 +44,16 @@ Running for Change is a 501(c)(3) non-profit organization focused on reducing ca
 
 ## File Structure for Problem7
 
-problem7_figma_project/
-├── index.html (Home page)
-├── pages/
-│   ├── about.html
-│   └── event.html
-├── assets/
-│   ├── styles.css
-│   ├── img/
-│   └── videos/
+problem7_figma_project/  <-- Vercel Root 
+├── components/
+│   ├── assets/
+│   │   ├── Img/
+│   │   └── videos/
+│   ├── pages/
+│   │   ├── about.html
+│   │   └── event.html
+│   └── styles.css       
+├── index.html          
 └── README.md
 
-CC. i4 asia incorporated 
+Big thanks to i4 asia incorporated! 
