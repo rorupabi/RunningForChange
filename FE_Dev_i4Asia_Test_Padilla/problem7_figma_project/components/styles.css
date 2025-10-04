@@ -809,7 +809,7 @@
 
         /*  FOOTER  */
         footer {
-            background-image: url('../assets/Img/running-man.jpg'); /* Add your image path here */
+            background-image: url('../components/assets/Img/running-man.jpg'); /* Add your image path here */
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
