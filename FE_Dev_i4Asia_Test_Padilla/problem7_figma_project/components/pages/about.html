@@ -13,9 +13,9 @@
     </video>
     <nav class="nav-bar">
         <ul>
-            <li><a href="../pages/home.html">Home</a></li>
+            <li><a href="../../../problem7_figma_project/index.html">Home</a></li>
             <p>Running for Change</p>
-            <li><a href="../pages/event.html">Events</a></li>
+            <li><a href="./event.html">Events</a></li>
         </ul>
     </nav>
     <h1 class="aboutus-text">About Us</h1>
@@ -50,7 +50,7 @@
             </div>
         </div>
         
-            <button class="register-btn-about">REGISTER ↗</button>
+            <button class="register-btn-about" onclick="goToEventPage()">REGISTER ↗</button>
         </div>
     </div>
 
@@ -62,8 +62,16 @@
             or bring the vibe on May 12, 2025 starting at the Green Bay Trail.
             </div>
             
-            <button class="register-btn">REGISTER ↗</button>
+            <button class="register-btn" onclick="goToEventPage()"">REGISTER ↗</button>
             <button class="newsletter-btn">NEWSLETTER ↗</button>
+
+            <div id="newsletterModal" class="modal-newsletter">
+            <div class="modal-content-newsletter">
+                <span class="close-newsletter">&times;</span>
+                <h2>Newsletter</h2>
+                <p>More news are coming soon! Stay tuned.</p>
+            </div>
+        </div>
         </div>
         </div>
     </div>
@@ -118,4 +126,30 @@
         <h2 class="footer-title">Running For Change</h2>
     </footer>
 </body>
+
+<script>
+    function goToEventPage() {
+    window.location.href = './event.html';
+    }
+
+    // Newsletter modal functionality
+    const newsletterModal = document.getElementById('newsletterModal');
+    const newsletterBtn = document.querySelector('.newsletter-btn');
+    const closeNewsletterBtn = document.querySelector('.close-newsletter');
+
+    // Open modal
+    newsletterBtn.addEventListener('click', function() {
+        newsletterModal.style.display = 'block';
+    });
+
+    closeNewsletterBtn.addEventListener('click', function() {
+        newsletterModal.style.display = 'none';
+    });
+    window.addEventListener('click', function(event) {
+        if (event.target === newsletterModal) {
+            newsletterModal.style.display = 'none';
+        }
+    });
+
+</script>
 </html>
