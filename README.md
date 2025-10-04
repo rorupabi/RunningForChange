@@ -1,8 +1,4 @@
 ⚠️ IMPORTANT NOTES:
-Problems 1-6: Must be completed within this HTML file in their respective sections
-Problem 7: Is a separate project with specific submission requirements (see Problem 7 section)
-Deadline: October 6, 2025 (Monday) - No extensions
-
 TEST BY i4 asia incorporated 
 
 PROBLEM 1-6 DONE IN OCTOBER 3 
