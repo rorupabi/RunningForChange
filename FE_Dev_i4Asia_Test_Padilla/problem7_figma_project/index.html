@@ -80,16 +80,16 @@
                 <h1>Don't Miss a Step</h1>
                 <p>Get the latest updates and details about the event.</p>
                 <button class="newsletter-btn-home">NEWSLETTER ↗</button>
-
-                <div id="newsletterModalHome" class="modal-newsletter">
+            </div>
+                
+            <div id="newsletterModalHome" class="modal-newsletter">
             <div class="modal-content-newsletter">
                 <span class="close-newsletter-home">&times;</span>
                 <h2>Newsletter</h2>
                 <p>More news are coming soon! Stay tuned.</p>
             </div>
         </div>
-            </div>
-                
+
             </div>
 
             <div class="Card4">
@@ -181,23 +181,37 @@
         }
     });
 
-    // Newsletter modal functionality for home page
+        // Newsletter modal functionality for home page
     const newsletterModalHome = document.getElementById('newsletterModalHome');
     const newsletterBtnHome = document.querySelector('.newsletter-btn-home');
     const closeNewsletterBtnHome = document.querySelector('.close-newsletter-home');
 
-    // btn function
+    // Open modal ONLY when button is clicked
     if (newsletterBtnHome) {
-        newsletterBtnHome.addEventListener('click', function() {
+        newsletterBtnHome.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
             newsletterModalHome.style.display = 'block';
         });
     }
-    // for close btn
+
+    // Close modal when X button is clicked
     if (closeNewsletterBtnHome) {
-        closeNewsletterBtnHome.addEventListener('click', function() {
+        closeNewsletterBtnHome.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
             newsletterModalHome.style.display = 'none';
         });
     }
 
+    // BUG BUG BUG
+    /// FIXED!
+    if (newsletterModalHome) {
+        newsletterModalHome.addEventListener('click', function(event) {
+            if (event.target === newsletterModalHome) {
+                newsletterModalHome.style.display = 'none';
+            }
+        });
+    }
 </script>
 </html>
