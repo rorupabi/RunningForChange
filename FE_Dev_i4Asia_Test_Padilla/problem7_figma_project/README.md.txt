@@ -28,26 +28,32 @@ Running for Change is a 501(c)(3) non-profit organization focused on reducing ca
 ## Technologies Used
 
 - HTML5
-- CSS3
+- CSS3 / Vanilla CSS
   - CSS Grid
   - Flexbox
-  - Custom animations
+  - Custom animations 
   - Media queries for responsive design
 - Vanilla JavaScript
   - DOM manipulation
   - Event listeners
   - Modal functionality
+  - PEXELS Photos & Videos 
+  - https://simpleicons.org/
+  - Google Symbols and Icons
+  - Google DevTools
+  - Git: https://github.com/rorupabi/RunningForChange
+  - Vercel: https://running-for-change.vercel.app/
 
 ## File Structure for Problem7
 
-problem7_figma_project/
-├── index.html (Home page)
-├── pages/
-│   ├── about.html
-│   └── event.html
-├── assets/
-│   ├── styles.css
-│   ├── img/
-│   └── videos/
+problem7_figma_project/  <-- Vercel Root 
+├── components/
+│   ├── assets/
+│   │   ├── Img/
+│   │   └── videos/
+│   ├── pages/
+│   │   ├── about.html
+│   │   └── event.html
+│   └── styles.css       
+├── index.html          
 └── README.md
-
