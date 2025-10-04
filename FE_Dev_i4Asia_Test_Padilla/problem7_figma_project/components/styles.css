@@ -275,6 +275,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            z-index: -1;
         }
 
         /* Background overlay for better text readability */
@@ -293,7 +294,7 @@
         .Card2 > div:first-child > *,
         .Card3 > * {
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
         .Card2 > div:first-child:hover,
@@ -330,6 +331,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 0;
         }
 
         .Card2 button:hover,
@@ -489,6 +491,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             animation: fadeIn 0.3s ease;
+            z-index: 100000;
         }
 
         .modal-content-newsletter {
@@ -501,6 +504,7 @@
             text-align: center;
             position: relative;
             animation: slideIn 0.3s ease;
+            z-index: 100000;
         }
 
         .modal-content-newsletter h2 {
@@ -520,7 +524,7 @@
         }
 
         .close-newsletter {
-            color: #aaa;
+            color: #000000;
             position: absolute;
             top: 15px;
             right: 25px;
@@ -528,6 +532,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s ease;
+            z-index: 100000;
         }
 
         .close-newsletter:hover,
