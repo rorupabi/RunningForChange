@@ -614,7 +614,7 @@
             font-size: 5rem; 
             font-weight: 700;
             text-align: center;
-            z-index: 5;
+            z-index: 1;
             margin: 0;
             font-family: 'Montserrat', 'Poppins', 'Inter', sans-serif;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
@@ -655,7 +655,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
@@ -815,6 +815,7 @@
             background-blend-mode: overlay;
             padding: 60px 40px 180px;
             margin-top: 0;
+            z-index: 0;
             position: relative;
             min-height: 700px;
         }
@@ -837,7 +838,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 100px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
         .footer-left, .footer-right {
